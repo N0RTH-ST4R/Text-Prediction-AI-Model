@@ -1,0 +1,19 @@
+{
+  "name": "text-prediction-ai",
+  "version": "1.0.0",
+  "description": "A text prediction AI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/toasterwaffles86/text-prediction-ai"
+  },
+  "author": "ToasterWaffles86",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "prompt-sync": "^4.2.0"
+  }
+}
