@@ -68,6 +68,7 @@ function aiUpdate(){
         }
     }
     linkWords()
+    writeWords()
 }
 
 function train(){
@@ -110,3 +111,14 @@ aiUpdate()
 text="Hi i am well how about you"
 aiUpdate()
 writeWords()
+setInterval(()=>{
+    console.clear()
+    console.log("Welcome! Type anything you want and watch it be stored in words.txt")
+    console.log("type .quit to exit")
+    text=prompt(">> ")
+    if(text!=".quit"){
+        aiUpdate()
+    }else{
+        process.exit(0)
+    }
+})
