@@ -4,6 +4,7 @@ const fs=require("fs")
 //AI Stuff
 var words=[]
 
+
 function addWord(word,before){
     let cont=true
     for(let i=0;i<words.length;i++){
@@ -71,33 +72,41 @@ function aiUpdate(){
     writeWords()
 }
 
+var trainingSentences=[
+    "he is my cousin",
+    "are you hungry?",
+    "are you married?",
+    "are you thirsty?",
+    "be seated, please",
+    "can you speak english?",
+    "dinner is ready",
+    "do you understand?",
+    "do you want some bread?",
+    "do you want some rest?",
+    "don't mention it",
+    "glad to see you"
+]
+
 function train(){
-    text="are you hungry?"
-    aiUpdate()
-    text="are you married?"
-    aiUpdate()
-    text="are you thirsty?"
-    aiUpdate()
-    text="be seated, please"
-    aiUpdate()
-    text="can you speak english?"
-    aiUpdate()
-    text="dinner is ready"
-    aiUpdate()
-    text="do you understand?"
-    aiUpdate()
-    text="do you want some bread?"
-    aiUpdate()
-    text="do you want some rest"
-    aiUpdate()
-    text="don't mention it"
-    aiUpdate()
-    text="glad to see you"
-    aiUpdate()
-    text="he is my cousin"
-    aiUpdate()
+    addSentences()
+    for(let i=0;i<trainingSentences.length;i++){
+        text=trainingSentences[i]
+        aiUpdate()
+    }
 }
 
+function addSentences(){
+    let s=fs.readFileSync(__dirname+"/sentences.txt",'utf8')
+    let s2=s.split("\n")
+    for(let i=0;i<s2.length;i++){
+        trainingSentences.push(s2[i])
+    }
+}
+function writeSentence(sentence){
+    let text=fs.readFileSync(__dirname+"/sentences.txt",'utf8')
+    text=text+sentence+"\n"
+    fs.writeFile(__dirname+"/sentences.txt",text,function(){})
+}
 function writeWords(){
     let text=""
     for(let i=0;i<words.length;i++){
@@ -122,6 +131,7 @@ setInterval(()=>{
     text=prompt(">> ")
     if(text!=".quit"){
         aiUpdate()
+        writeSentence(text)
     }else{
         process.exit(0)
     }
