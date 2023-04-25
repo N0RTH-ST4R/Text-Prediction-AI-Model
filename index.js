@@ -55,7 +55,7 @@ class Word{
 }
 addWord("",null)
 //Display Stuff
-var text="Hello how are you are you well"
+var text=""
 var prediction=""
 
 function aiUpdate(){
@@ -106,11 +106,15 @@ function writeWords(){
     fs.writeFile(__dirname+"/words.txt",text,function(){})
 }
 
-train()
-aiUpdate()
-text="Hi i am well how about you"
 aiUpdate()
 writeWords()
+function doTrain(){
+    let bool=prompt("Train? [Y/n]>> ")
+    if(bool=="Y" || bool=="y" || bool==""){
+        train()
+    }
+}
+doTrain()
 setInterval(()=>{
     console.clear()
     console.log("Welcome! Type anything you want and watch it be stored in words.txt")
